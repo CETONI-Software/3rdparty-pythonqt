@@ -286,7 +286,7 @@ bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
 
 bool ShellGenerator::functionHasNonConstReferences(const AbstractMetaFunction* function)
 {
-  foreach(const AbstractMetaArgument* arg, function->arguments())
+  for (const AbstractMetaArgument* arg :  function->arguments())
   {
     if (!arg->type()->isConstant() && arg->type()->isReference()) {
       QString s;
@@ -324,7 +324,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
     | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
     );
   QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>::fromList(functions);
-  foreach(AbstractMetaFunction* func, functions2) {
+  for (AbstractMetaFunction* func :  functions2) {
     set1.insert(func);
   }
 
@@ -332,7 +332,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
 
   bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
 
-  foreach(AbstractMetaFunction* func, set1.toList()) {
+  for (AbstractMetaFunction* func :  set1.toList()) {
     if (func->implementingClass()==meta_class) {
       if (hasPromoter || func->wasPublic()) {
         resultFunctions << func;
@@ -357,7 +357,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
 {
   AbstractMetaFunctionList functions; 
   AbstractMetaFunctionList functions1 = getFunctionsToWrap(meta_class); 
-  foreach(AbstractMetaFunction* func, functions1) {
+  for (AbstractMetaFunction* func :  functions1) {
     if (func->wasProtected() || func->isVirtual()) {
       functions << func;
     }
