@@ -42,7 +42,7 @@
 #include "generator.h"
 #include "reporthandler.h"
 #include "fileout.h"
-
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -140,3 +140,15 @@ bool Generator::hasDefaultConstructor(const AbstractMetaType *type)
     }
     return false;
 }
+
+void Generator::writeCopyrightNotice(QTextStream& s)
+{
+  s << "/*************************************************************************************" << endl;
+  s << "**" << endl;
+  s << "** Copyright " << QDateTime::currentDateTime().date().year() << ", MeVis Medical Solutions AG" << endl;
+  s << "**" << endl;
+  s << "** GNU LESSER GENERAL PUBLIC LICENSE Version 2.1, February 1999" << endl;
+  s << "**" << endl;
+  s << "**************************************************************************************/" << endl;
+}
+

@@ -268,6 +268,8 @@ void SetupGenerator::generate()
       ReportHandler::debugSparse(QString("generating: %1").arg(fileName));
       QTextStream &s = initFile.stream;
 
+      writeCopyrightNotice(s);
+
       s << "#include <PythonQt.h>" << endl;
       s << "#include <PythonQtConversion.h>" << endl;
 

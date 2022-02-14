@@ -119,7 +119,11 @@ public:
     QSet<QString> qtMetaTypeDeclaredTypeNames() const
         { return m_qmetatype_declared_typenames; }
 
+    static void writeCopyrightNotice(QTextStream& s);
+
 protected:
+    
+
     void verifyDirectoryFor(const QFile &file);
 
     AbstractMetaClassList m_classes;

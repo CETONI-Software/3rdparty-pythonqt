@@ -95,9 +95,14 @@ static QStringList compactFiles(const QStringList& list, const QString& ext, con
   if (dir.endsWith("_builtin")) {
     srcDir = dir.left(dir.length()-strlen("_builtin"));
   }
+
+
   while (count>0) {
     QString outFileName = prefix + QString::number(fileNum) + ext;
     FileOut file(dir + "/" + outFileName);
+
+    Generator::writeCopyrightNotice(file.stream);
+
     if (ext == ".cpp") {
       file.stream << "#include \"" + prefix + QString::number(fileNum) + ".h\"\n";
     }
